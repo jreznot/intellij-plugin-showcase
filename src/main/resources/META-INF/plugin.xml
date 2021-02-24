@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>org.example.my-plugin</id>
+    <name>My Company Helper</name>
+    <vendor email="support@example.org" url="https://example.org">MyCompany</vendor>
+
+    <description><![CDATA[
+    Demo plugin that shows features of IntelliJ Platform.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.properties</depends>
+
+    <!-- todo IntelliLang -->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Framework Support: Spring -->
+        <implicitUsageProvider implementation="org.example.spring.SpringImplicitUsagesProvider"/>
+
+        <psi.referenceContributor language="JAVA" implementation="org.example.spring.SpringPropertyReferenceContributor"/>
+
+        <localInspection language="JAVA" implementationClass="org.example.spring.SpringInjectInspection"
+                         displayName="Spring dependency injection to field"
+                         groupName="Spring"/>
+
+        <!-- Custom Language: JSONPath -->
+    </extensions>
+</idea-plugin>
