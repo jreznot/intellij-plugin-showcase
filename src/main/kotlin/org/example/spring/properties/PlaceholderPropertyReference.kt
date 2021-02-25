@@ -28,8 +28,7 @@ class PlaceholderPropertyReference private constructor(
         val module = ModuleUtilCore.findModuleForPsiElement(element)
 
         if (module != null) {
-            val directories =
-                getConfigDirectories(module)
+            val directories = getConfigDirectories(module)
             for (directory in directories) {
                 val files = directory.files
                 for (file in files) {
@@ -60,12 +59,7 @@ class PlaceholderPropertyReference private constructor(
 
         private fun getConfigDirectories(module: Module): Set<PsiDirectory> {
             val configs = HashSet<PsiDirectory>()
-
-            collectConfigDirectories(
-                module,
-                configs
-            )
-
+            collectConfigDirectories(module, configs)
             return configs
         }
 
@@ -97,11 +91,7 @@ class PlaceholderPropertyReference private constructor(
             }
 
             for (dependentModule in moduleRootManager.dependencies) {
-                collectConfigDirectories(
-                    dependentModule,
-                    configs,
-                    visitedModules
-                )
+                collectConfigDirectories(dependentModule, configs, visitedModules)
             }
         }
     }

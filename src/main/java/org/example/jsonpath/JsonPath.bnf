@@ -1,0 +1,56 @@
+{
+  parserClass="org.example.jsonpath.parser.JsonPathParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="JsonPath"
+  psiImplClassSuffix="Impl"
+  psiPackage="org.example.jsonpath.psi"
+  psiImplPackage="org.example.jsonpath.psi.impl"
+
+  elementTypeHolderClass="org.example.jsonpath.psi.JsonPathTypes"
+  elementTypeClass="org.example.jsonpath.psi.JsonPathElementType"
+  tokenTypeClass="org.example.jsonpath.psi.JsonPathTokenType"
+  psiImplUtilClass = "org.example.jsonpath.psi.JsonPathPsiUtils"
+  tokens = [
+    LBRACKET='['
+    RBRACKET=']'
+    COMMA=','
+    DOT='.'
+    RECURSIVE_DESCENT='..'
+    ROOT_CONTEXT='$'
+    EVAL_CONTEXT='@'
+    WILDCARD='*'
+  ]
+}
+
+private root ::= head_ segments_*
+
+private head_ ::= (rootSegment | evalSegment | idSegment | wildcardSegment)
+private segments_ ::= dotExpr | scanExpr | dotSegment
+
+rootSegment ::= ROOT_CONTEXT segmentExpression*
+evalSegment ::= EVAL_CONTEXT segmentExpression*
+
+private dotSegment ::= (RECURSIVE_DESCENT | DOT) (idSegment | wildcardSegment)
+private dotExpr ::= DOT segmentExpression+
+private scanExpr ::= RECURSIVE_DESCENT segmentExpression+
+
+wildcardSegment ::= WILDCARD segmentExpression* {
+  pin=1
+  name="*"
+}
+id ::= IDENTIFIER {
+  name="identifier"
+}
+idSegment ::= id segmentExpression*
+
+segmentExpression ::= LBRACKET nestedExpression_ RBRACKET
+
+private nestedExpression_ ::=
+  wildcardSegment |
+  indexesList
+
+indexesList ::= (NUMBER (COMMA NUMBER)*) {
+  name="indexes list"
+}

@@ -17,12 +17,19 @@
         <!-- Framework Support: Spring -->
         <implicitUsageProvider implementation="org.example.spring.SpringImplicitUsagesProvider"/>
 
-        <psi.referenceContributor language="JAVA" implementation="org.example.spring.SpringPropertyReferenceContributor"/>
+        <psi.referenceContributor language="JAVA"
+                                  implementation="org.example.spring.SpringPropertyReferenceContributor"/>
 
-        <localInspection language="JAVA" implementationClass="org.example.spring.SpringInjectInspection"
-                         displayName="Spring dependency injection to field"
-                         groupName="Spring"/>
+        <localInspection language="JAVA" implementationClass="org.example.spring.SpringAutowiredInspection"
+                         enabledByDefault="true"
+                         displayName="Spring dependency injection to field" groupName="Spring"/>
 
         <!-- Custom Language: JSONPath -->
+
+        <lang.parserDefinition language="JSONPath"
+                               implementationClass="org.example.jsonpath.psi.JsonPathParserDefinition"/>
+        <lang.braceMatcher language="JSONPath" implementationClass="org.example.jsonpath.JsonPathPairedBraceMatcher"/>
+        <lang.syntaxHighlighterFactory language="JSONPath"
+                                       implementationClass="org.example.jsonpath.JsonPathSyntaxHighlighterFactory"/>
     </extensions>
 </idea-plugin>

@@ -37,3 +37,12 @@ compileTestKotlin {
 test {
     useJUnitPlatform()
 }
+
+// Generated content
+sourceSets {
+    main {
+        java {
+            srcDirs += ['src/main/gen']
+        }
+    }
+}
