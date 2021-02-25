@@ -32,9 +32,19 @@
         <lang.braceMatcher language="JSONPath" implementationClass="org.example.jsonpath.JsonPathPairedBraceMatcher"/>
         <lang.syntaxHighlighterFactory language="JSONPath"
                                        implementationClass="org.example.jsonpath.JsonPathSyntaxHighlighterFactory"/>
+
+        <!-- Custom Web Content -->
+
+        <fileEditorProvider implementation="org.example.jsonpath.ui.TryJsonPathEditorProvider"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.intellij.intelliLang">
         <injectionConfig config="jsonPathInjections.xml"/>
     </extensions>
+
+    <actions>
+        <action id="TryJsonPath" class="org.example.jsonpath.ui.TryJsonPathAction">
+            <add-to-group group-id="ToolsMenu" anchor="before" relative-to-action="ExternalToolsGroup"/>
+        </action>
+    </actions>
 </idea-plugin>
