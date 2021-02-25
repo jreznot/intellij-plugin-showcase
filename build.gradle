@@ -19,8 +19,7 @@ dependencies {
 
 intellij {
     version '2020.3.2'
-
-    plugins = ['java', 'properties']
+    plugins = ['java', 'properties', 'IntelliLang']
 }
 patchPluginXml {
     changeNotes """

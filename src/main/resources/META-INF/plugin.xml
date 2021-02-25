@@ -10,8 +10,7 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.properties</depends>
-
-    <!-- todo IntelliLang -->
+    <depends>org.intellij.intelliLang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Framework Support: Spring -->
@@ -20,9 +19,11 @@
         <psi.referenceContributor language="JAVA"
                                   implementation="org.example.spring.SpringPropertyReferenceContributor"/>
 
-        <localInspection language="JAVA" implementationClass="org.example.spring.SpringAutowiredInspection"
+        <localInspection language="JAVA"
+                         implementationClass="org.example.spring.SpringAutowiredInspection"
                          enabledByDefault="true"
-                         displayName="Spring dependency injection to field" groupName="Spring"/>
+                         groupName="Spring"
+                         displayName="@Autowired on a field in Spring beans"/>
 
         <!-- Custom Language: JSONPath -->
 
@@ -31,5 +32,9 @@
         <lang.braceMatcher language="JSONPath" implementationClass="org.example.jsonpath.JsonPathPairedBraceMatcher"/>
         <lang.syntaxHighlighterFactory language="JSONPath"
                                        implementationClass="org.example.jsonpath.JsonPathSyntaxHighlighterFactory"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="org.intellij.intelliLang">
+        <injectionConfig config="jsonPathInjections.xml"/>
     </extensions>
 </idea-plugin>

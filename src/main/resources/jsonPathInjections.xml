@@ -1,0 +1,6 @@
+<LanguageInjectionConfiguration>
+  <injection language="JSONPath" injector-id="java">
+    <display-name>MockMvcResultMatchers.jsonPath (org.springframework.test.web.servlet.result)</display-name>
+    <place><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("jsonPath").definedInClass("org.springframework.test.web.servlet.result.MockMvcResultMatchers"))]]></place>
+  </injection>
+</LanguageInjectionConfiguration>
