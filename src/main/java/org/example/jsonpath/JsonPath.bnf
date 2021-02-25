@@ -21,6 +21,8 @@
     ROOT_CONTEXT='$'
     EVAL_CONTEXT='@'
     WILDCARD='*'
+    IDENTIFIER='regexp:([a-zA-Z]|[_])([a-zA-Z]|[_\-0-9])*'
+    NUMBER='regexp:0|[1-9][0-9]*'
   ]
 }
 
