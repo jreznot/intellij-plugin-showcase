@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface JsonPathId extends PsiElement {
 
+  @NotNull
+  PsiElement getIdentifier();
+
 }

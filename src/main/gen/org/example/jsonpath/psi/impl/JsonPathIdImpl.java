@@ -27,4 +27,10 @@ public class JsonPathIdImpl extends ASTWrapperPsiElement implements JsonPathId {
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public PsiElement getIdentifier() {
+    return findNotNullChildByType(IDENTIFIER);
+  }
+
 }
